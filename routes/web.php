@@ -1,7 +1,10 @@
 L<?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\RepartidoresController;
+use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\CatalogosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,4 +37,20 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
+
+Route::get('/repartidores/create', [RepartidoresController::class, 'create'])->name('repartidores.create');
+Route::post('/repartidores/store', [RepartidoresController::class, 'store'])->name('repartidores.store');
+Route::get('/repartidores', [RepartidoresController::class, 'index'])->name('repartidores.index');
+Route::get('/repartidores/show/{repartidor}', [RepartidoresController::class, 'show'])->name('repartidores.show');
+Route::get('/repartidores/edit/{repartidor}', [RepartidoresController::class, 'edit'])->name('repartidores.edit');
+Route::put('/repartidores/update/{repartidor}', [RepartidoresController::class, 'update'])->name('repartidores.update');
+Route::delete('/repartidores/destroy/{repartidor}', [RepartidoresController::class, 'destroy'])->name('repartidores.destroy');
+
+Route::get('/clientes/create', [ClientesController::class, 'create'])->name('clientes.create');
+Route::post('/clientes/store', [ClientesController::class, 'store'])->name('clientes.store');
+Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+Route::get('/clientes/show/{cliente}', [ClientesController::class, 'show'])->name('clientes.show');
+Route::get('/clientes/edit/{cliente}', [ClientesController::class, 'edit'])->name('clientes.edit');
+Route::put('/clientes/update/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+Route::delete('/clientes/destroy/{cliente}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
 
